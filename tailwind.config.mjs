@@ -10,5 +10,5 @@ export default {
 	theme: {
 		extend: {},
 	},
-	plugins: [ flowbite({ charts: false }), addDynamicIconSelectors() ],
+	plugins: [ flowbite({ charts: true }), addDynamicIconSelectors() ],
 }

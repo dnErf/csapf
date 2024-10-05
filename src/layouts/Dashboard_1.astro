@@ -1,0 +1,21 @@
+---
+import Main from "./Main.astro"
+import Sidebar from "@/components/dashboard_1/sidebar.astro"
+---
+
+<script>
+import { initFlowbite } from "flowbite"
+
+window.onload = function() {
+    initFlowbite()
+}
+</script>
+
+<Main>
+    <nav>
+        <Sidebar />
+    </nav>
+    <section class="ml-4 sm:ml-44">
+        <slot />
+    </section>
+</Main>

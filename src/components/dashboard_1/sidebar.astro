@@ -1,0 +1,36 @@
+---
+---
+
+<button
+    data-drawer-target="dashboard1-sidebar"
+    data-drawer-toggle="dashboard1-sidebar"
+    aria-controls="dashboard1-sidebar"
+    class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700"
+>
+    <span class="sr-only">Open Sidebar</span>
+</button>
+
+<aside id="dashboard1-sidebar" 
+    aria-label="Side Navigation"
+    class="fixed top-0 left-0 z-40 w-44 h-screen transition-transform -translate-x-full sm:translate-x-0"
+>
+    <div class="p-4 border-r border-gray-100 h-full">
+        <ul>
+            <li class="px-1 py-2">
+                <a class="flex items-center gap-2 hover:text-gray-500 dark:hover:text-white cursor-pointer">
+                    <span class="icon-[bx--pie-chart] w-6 h-6 text-gray-500"></span>
+                    <span>Overview</span>
+                </a>
+            </li>
+            <li class="px-1 py-2">
+                <a class="flex items-center gap-2 hover:text-gray-500 dark:hover:text-white cursor-pointer">
+                    <span class="icon-[bx--message-square-detail] w-6 h-6 text-gray-500"></span>
+                    <span class="whitespace-nowrap">Messages</span>
+                    <span class="text-xs inline-flex justify-center items-center w-4 h-4 rounded-full bg-gray-500 text-white">
+                        <small>9</small>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside>
