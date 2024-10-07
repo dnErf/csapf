@@ -1,0 +1,15 @@
+---
+import FileModal from "./file_modal.astro"
+---
+
+<div class="flex justify-between items-center py-2">
+    <form>
+        <div class="flex items-center gap-4">
+            <label for="filedrive1-search" class="block text-sm font-medium text-gray-900 dark:text-white">Search</label>
+            <input type="text" name="filedrive1-search" id="filedrive1-search" class="bg-gray-50 border-gray-300 text-gray-900 text-sm rounded-md block w-full p-1 focus:outline-0 focus:outline-none dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="File ..." required="">
+        </div>
+    </form>
+    <div>
+        <FileModal />
+    </div>
+</div>

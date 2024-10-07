@@ -1,0 +1,42 @@
+---
+let { id } = Astro.props
+---
+<div class="w-56 min-w-56 max-w-56 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="flex justify-between items-center p-1 mb-2">
+        <div>
+            <h4 class="text-xs text-gray-900 dark:text-white">undraw_collaboration_re_vyau.png</h4>
+        </div>
+        <div class="flex justify-end">
+            <button id="filedrive1-dropdown" data-dropdown-toggle={ id } class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none rounded-lg text-sm p-1" type="button">
+                <span class="sr-only">Open dropdown</span>
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 6h.01M12 12h.01M12 18h.01"/>
+                </svg>
+            </button>
+            <!-- Dropdown menu -->
+            <div id={ id } class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2" aria-labelledby="dropdownButton">
+                <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+                </li>
+                <li>
+                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pb-2 gap-8">
+        <div class="flex flex-col items-center mb-4">
+            <img class="w-16 h-16 px-1 rounded-full shadow-lg" src="/public/pics/undraw_collaboration_re_vyau.png" alt="file image"/>
+        </div>
+        <div class="flex items-center gap-2 p-1 px-2">
+            <img class="w-8 h-8 rounded-full shadow-lg" src="/public/pics/undraw_profile_pic_re_iwgo.png" alt="file image"/>
+            <div>
+                <h5 class="text-xs">Username</h5>
+                <p class="text-xs"><small>dafdasf</small></p>
+            </div>
+        </div>
+    </div>
+  </div>
+

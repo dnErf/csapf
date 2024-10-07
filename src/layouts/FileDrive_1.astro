@@ -1,0 +1,15 @@
+---
+import Main from "./Main.astro";
+import NavHead from "@/components/filedrive_1/nav_head.astro";
+import NavSide from "@/components/filedrive_1/nav_side.astro";
+---
+
+<Main>
+    <nav>
+        <NavHead />
+    </nav>
+    <section class="flex gap-4">
+        <NavSide />
+        <slot />
+    </section>
+</Main>
