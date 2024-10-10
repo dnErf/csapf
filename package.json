@@ -12,7 +12,6 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "^11.1.0",
-    "@astrojs/db": "^0.14.2",
     "@astrojs/preact": "^3.5.3",
     "@astrojs/tailwind": "^5.1.1",
     "@iconify-json/bx": "^1.2.0",
