@@ -15,7 +15,7 @@ export default defineConfig({
   }),
   vite: {
     ssr: {
-      external: ['node:buffer','node:crypto']
+      external: ['node:buffer','node:crypto','node:events','node:stream']
     }
   }
 });

@@ -1,7 +1,8 @@
 import { bytesToHex, randomBytes } from '@noble/hashes/utils'
 import { defineAction, ActionError } from "astro:actions"
+import { createJWT, validateJWT } from "oslo/jwt"
+import { TimeSpan } from "oslo"
 import { z } from "astro:schema"
-import jwt from "jsonwebtoken"
 import * as db from "@/data/database"
 
 function createSession() {
@@ -47,8 +48,11 @@ export const authActions = {
 
             await db.insertNewSession(session)
 
-            let jwtToken = jwt.sign(session, import.meta.env.JWT_SECRET, { expiresIn: "1h" })
+            let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
             ctx.cookies.set(session.id, jwtToken, { path: "/" })
+
+            Object.assign(ctx.locals, session)
+            Object.assign(ctx.locals, user)
         }
     }),
     signIn: defineAction({
@@ -70,15 +74,14 @@ export const authActions = {
             let sessionToken = ctx.cookies.get(user.session)
 
             if (sessionToken) {
-                jwt.verify(sessionToken.value, import.meta.env.JWT_SECRET, (err, d) => {
-                    if (err) {
-                        console.log(`jwt is expired ${d}`)
-                        ctx.cookies.delete(user.session)
-                        db.deleteSessionById(user.session)
-                    }
-
+                try {
+                    let jwtVerificationResult = await validateJWT("HS256", import.meta.env.JWT_SECRET, sessionToken.value)
+                    console.log(jwtVerificationResult)
+                } 
+                catch {
+                    ctx.cookies.delete(user.session)
                     initNewsession = false
-                })
+                }
             }
 
             if (initNewsession) {
@@ -87,10 +90,11 @@ export const authActions = {
                 await db.updateUserSessionById(user.id, session.id)
                 await db.insertNewSession(session)
 
-                let jwtToken = jwt.sign(session, import.meta.env.JWT_SECRET, { expiresIn: "1h" })
+                let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
                 ctx.cookies.set(session.id, jwtToken, { path: "/" })
-                ctx.locals.session = session
-                ctx.locals.user = user
+                
+                Object.assign(ctx.locals, session)
+                Object.assign(ctx.locals, user)
             }
         }
     })
