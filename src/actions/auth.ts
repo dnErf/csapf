@@ -89,6 +89,8 @@ export const authActions = {
 
                 let jwtToken = jwt.sign(session, import.meta.env.JWT_SECRET, { expiresIn: "1h" })
                 ctx.cookies.set(session.id, jwtToken, { path: "/" })
+                ctx.locals.session = session
+                ctx.locals.user = user
             }
         }
     })
