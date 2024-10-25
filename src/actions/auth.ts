@@ -3,7 +3,9 @@ import { defineAction, ActionError } from "astro:actions"
 import { createJWT, validateJWT } from "oslo/jwt"
 import { TimeSpan } from "oslo"
 import { z } from "astro:schema"
-import * as db from "@/data/database"
+// import * as db from "@/data/database"
+import * as schema from "@/data/schema.ts"
+import { drizzle } from 'drizzle-orm/d1'
 
 function createSession() {
     let sessionId = bytesToHex(randomBytes(10))
@@ -27,32 +29,36 @@ export const authActions = {
             lastName: z.string()
         }),
         handler: async (input, ctx) => {
-            let user = await db.getOneUserByEmail(input.email)
+            console.log(ctx.locals.devd1)
+            let db = drizzle(ctx.locals.devd1)
+            console.log("===")
+            console.log(db)
 
-            if (user.length) {
-                console.log("user already exists")
-                throw new ActionError({
-                    code: "BAD_REQUEST",
-                    message: "user already exists in record"
-                })
-            }
+            // let user = await db.getOneUserByEmail(input.email)
+            // if (user.length) {
+            //     console.log("user already exists")
+            //     throw new ActionError({
+            //         code: "BAD_REQUEST",
+            //         message: "user already exists in record"
+            //     })
+            // }
 
             let session = createSession()
 
-            await db.insertNewUser({
-                email: input.email, 
-                userName: input.userName,
-                fullName: input.firstName + " " + input.lastName,
-                session: session.id
-            })
+            // await db.insertNewUser({
+            //     email: input.email, 
+            //     userName: input.userName,
+            //     fullName: input.firstName + " " + input.lastName,
+            //     session: session.id
+            // })
 
-            await db.insertNewSession(session)
+            // await db.insertNewSession(session)
 
-            let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
-            ctx.cookies.set(session.id, jwtToken, { path: "/" })
+            // let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
+            // ctx.cookies.set(session.id, jwtToken, { path: "/" })
 
             Object.assign(ctx.locals, session)
-            Object.assign(ctx.locals, user)
+            // Object.assign(ctx.locals, user)
         }
     }),
     signIn: defineAction({
@@ -61,40 +67,40 @@ export const authActions = {
             userName: z.string()
         }),
         handler: async (input, ctx) => {
-            let user = (await db.getOneUserByUser(input.userName))[0]
-            if (!user) {
-                console.log("user does not exists")
-                throw new ActionError({
-                    code: "BAD_REQUEST",
-                    message: "user does not exists in record"
-                })
-            }
+            // let user = (await db.getOneUserByUser(input.userName))[0]
+            // if (!user) {
+            //     console.log("user does not exists")
+            //     throw new ActionError({
+            //         code: "BAD_REQUEST",
+            //         message: "user does not exists in record"
+            //     })
+            // }
 
             let initNewsession = true
-            let sessionToken = ctx.cookies.get(user.session)
+            // let sessionToken = ctx.cookies.get(user.session)
 
-            if (sessionToken) {
-                try {
-                    let jwtVerificationResult = await validateJWT("HS256", import.meta.env.JWT_SECRET, sessionToken.value)
-                    console.log(jwtVerificationResult)
-                } 
-                catch {
-                    ctx.cookies.delete(user.session)
-                    initNewsession = false
-                }
-            }
+            // if (sessionToken) {
+            //     try {
+            //         let jwtVerificationResult = await validateJWT("HS256", import.meta.env.JWT_SECRET, sessionToken.value)
+            //         console.log(jwtVerificationResult)
+            //     } 
+            //     catch {
+            //         ctx.cookies.delete(user.session)
+            //         initNewsession = false
+            //     }
+            // }
 
             if (initNewsession) {
                 let session = createSession()
 
-                await db.updateUserSessionById(user.id, session.id)
-                await db.insertNewSession(session)
+                // await db.updateUserSessionById(user.id, session.id)
+                // await db.insertNewSession(session)
 
-                let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
-                ctx.cookies.set(session.id, jwtToken, { path: "/" })
+                // let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
+                // ctx.cookies.set(session.id, jwtToken, { path: "/" })
                 
                 Object.assign(ctx.locals, session)
-                Object.assign(ctx.locals, user)
+                // Object.assign(ctx.locals, user)
             }
         }
     })

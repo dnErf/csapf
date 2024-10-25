@@ -1,8 +1,10 @@
 # etc
 .@/
 .drizzle
+worker-configuration.d.ts
 
 # build output
+.wrangler
 dist/
 
 # generated types
@@ -20,6 +22,7 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.dev.vars
 
 # macOS-specific files
 .DS_Store

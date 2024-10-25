@@ -11,11 +11,12 @@ export default defineConfig({
   integrations: [tailwind(), preact()],
   output: 'server',
   adapter: cloudflare({
-    imageService: 'passthrough'
+    imageService: 'passthrough',
+    platformProxy: { enabled: true }
   }),
   vite: {
     ssr: {
-      external: ['cloudflare:sockets','node:buffer','node:crypto','node:events','node:stream']
+      external: ['node:buffer']
     }
   }
 });
