@@ -8,12 +8,15 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "db:gen": "drizzle-kit generate --config=drizzle.config.ts",
     "db:push": "drizzle-kit push --config=drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config=drizzle.config.ts",
     "db:studio": "drizzle-kit studio --config=drizzle.config.ts",
     "wrangler:d1": "wrangler dev",
     "wrangler:create-migrations": "wrangler d1 migrations create dev init_table",
     "wrangler:apply-migrations": "wrangler d1 migrations apply dev init_table --remote=true",
-    "wrangler:preview": "wrangler types && wrangler pages dev ./dist"
+    "wrangler:preview": "astro build && wrangler pages dev",
+    "wrangler:typegen": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -24,6 +27,7 @@
     "@iconify-json/bxl": "^1.2.0",
     "@iconify-json/bxs": "^1.2.0",
     "@iconify/tailwind": "^1.1.3",
+    "@libsql/client": "^0.14.0",
     "@noble/hashes": "^1.5.0",
     "apexcharts": "^3.54.0",
     "astro": "^4.16.4",

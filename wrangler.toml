@@ -1,7 +1,8 @@
-# name = "csapf"
-main = "dist/_worker.js/index.js"
+name = "csapf"
+# main = "dist/_worker.js/index.js"
+pages_build_output_dir = "./dist"
 # main = "dist/"
-compatibility_date = "2024-10-24"
+compatibility_date = "2024-10-22"
 # compatibility_flags = ["nodejs.compat"]
 
 [[d1_databases]]
@@ -9,4 +10,9 @@ binding = "devd1" # available in your Worker on env.DB
 database_name = "dev"
 database_id = "478cb27d-b9c4-49e0-8336-7c9ae4125d62"
 preview_database_id = "devd1"
-migrations_dir = ".drizzle/migrations"
+migrations_dir = "./.drizzle/migrations"
+
+[[kv_namespaces]]
+binding = "dkv1"
+id = "5f4178a59b914df08be4e2de1450f941"
+preview_id = "5f4178a59b914df08be4e2de1450f941"

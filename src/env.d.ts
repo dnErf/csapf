@@ -10,13 +10,13 @@
 // export type userSchema = typeof schema.usersTable.$inferSelect
 
 type Env = {
-    d1: import("@cloudflare/workers-types").D1Database | null;
+    devd1: import("@cloudflare/workers-types").D1Database | null;
+    dkv1: import("@cloudflare/workers-types").KVNamespace | null;
 }
-type Runtime = import('@astrojs/cloudflare').Runtime<Env>;
+type CfRuntime = import('@astrojs/cloudflare').Runtime<Env>;
 
 declare namespace App {
-    interface Locals extends Runtime {
-        devd1: import("@cloudflare/workers-types").D1Database | null;
+    interface Locals extends CfRuntime {
         // session: sessionSchema | null;
         // user: userSchema | null;
     }

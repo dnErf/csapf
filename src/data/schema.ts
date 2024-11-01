@@ -1,4 +1,4 @@
-import { sql } from "drizzle-orm"
+import { relations, sql } from "drizzle-orm"
 import { sqliteTable, text } from "drizzle-orm/sqlite-core"
 import { nanoid } from "nanoid"
 
@@ -16,9 +16,18 @@ export const usersTable = sqliteTable("users", {
 })
 
 export const sessionTable = sqliteTable("sessions", {
-    id: text("id")
-        .primaryKey()
-        .references(() => usersTable.session),
+    id: text("id").notNull(),
     salt: text("salt").notNull(),
     expiresAt: text().default(sql`(CURRENT_TIMESTAMP)`)
 })
+
+export const usersToSessionRelations = relations(usersTable, ({ one }) => ({
+    session: one(sessionTable)
+}))
+
+export const sessionsToUserRelations = relations(sessionTable, ({ one }) => ({
+    session: one(usersTable, {
+        fields: [sessionTable.id],
+        references: [usersTable.session]
+    })
+}))
