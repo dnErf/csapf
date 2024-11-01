@@ -1,20 +1,5 @@
 ---
 import Main from "@/layouts/Main.astro"
-
-let dev = Astro.locals.dev;
-console.log(dev)
-if (dev) {
-    let rdev = await dev.prepare("SELECT * FROM xdumps LIMIT 5").all()
-    console.log(rdev)
-}
-console.log("===")
-let devd1 = Astro.locals.runtime.env.devd1;
-console.log(devd1)
-if (devd1) {
-    let rdevd1 = await devd1.prepare("SELECT * FROM xdumps LIMIT 5").all()
-    console.log(rdevd1)
-    console.log("===")
-}
 ---
 
 <Main>
