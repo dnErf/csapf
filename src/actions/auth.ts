@@ -1,8 +1,8 @@
 import { bytesToHex, randomBytes } from '@noble/hashes/utils'
 import { defineAction, ActionError } from "astro:actions"
-import { validateJWT } from "oslo/jwt"
+import { createJWT, validateJWT } from "oslo/jwt"
 // import { createJWT } from "oslo/jwt"
-// import { TimeSpan } from "oslo"
+import { TimeSpan } from "oslo"
 import { drizzle } from "drizzle-orm/d1"
 import { eq } from "drizzle-orm"
 import { z } from "astro:schema"
@@ -64,8 +64,8 @@ export const authActions = {
                 })
             }
 
-            // let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
-            // ctx.cookies.set(session.id, jwtToken, { path: "/" })
+            let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
+            ctx.cookies.set(session.id, jwtToken, { path: "/" })
 
             Object.assign(ctx.locals, session)
             Object.assign(ctx.locals, user)
@@ -126,8 +126,8 @@ export const authActions = {
                     })
                 }
 
-                // let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
-                // ctx.cookies.set(session.id, jwtToken, { path: "/" })
+                let jwtToken = await createJWT("HS256", import.meta.env.JWT_SECRET, session, { expiresIn: new TimeSpan(30, "d") })
+                ctx.cookies.set(session.id, jwtToken, { path: "/" })
                 
                 Object.assign(ctx.locals, session)
                 Object.assign(ctx.locals, user)

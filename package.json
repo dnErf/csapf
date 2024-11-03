@@ -23,6 +23,7 @@
     "@astrojs/cloudflare": "^11.1.0",
     "@astrojs/preact": "^3.5.3",
     "@astrojs/tailwind": "^5.1.1",
+    "@directus/sdk": "^18.0.0",
     "@iconify-json/bx": "^1.2.0",
     "@iconify-json/bxl": "^1.2.0",
     "@iconify-json/bxs": "^1.2.0",
