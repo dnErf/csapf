@@ -1,0 +1,22 @@
+---
+import Blog_1 from "@/layouts/Blog_1.astro"
+import Heading from "@/components/blog_1/heading.astro"
+import ArticleCard from "@/components/blog_1/article_card.astro"
+import ArticleSearch from "@/components/blog_1/article_search.astro"
+---
+
+<Blog_1>
+    <div>
+        <Heading />
+    </div>
+    <div>
+        <ArticleSearch />
+    </div>
+    <div>
+    {
+        Array(1).fill(1).map((article) => (
+            <ArticleCard />
+        ))
+    }
+    </div>
+</Blog_1>
