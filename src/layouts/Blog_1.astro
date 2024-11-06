@@ -1,31 +1,15 @@
 ---
 import "../styles.css"
+import Base from "./Base.astro"
 import Navbar from "@/components/blog_1/navbar.astro"
 import Footer from "@/components/blog_1/footer.astro"
 import { TRAVERSY_SITE_DESCRIPTION } from "@/lib/constants.ts"
-
-interface Props {
-    title?: string;
-}
-
-let { title = "Articles, Stories, Tutorials" } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-        <meta name="description" content={TRAVERSY_SITE_DESCRIPTION} />
-        <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
-		<title>{title}</title>
-	</head>
-	<body>
-        <Navbar />
-        <section>
-            <slot />
-        </section>
-        <Footer />
-	</body>
-</html>
+<Base metaSiteDescription={TRAVERSY_SITE_DESCRIPTION} metaPageTitle="Articles, Stories, Tutorials">
+	<Navbar />
+	<section>
+		<slot />
+	</section>
+	<Footer />
+</Base>

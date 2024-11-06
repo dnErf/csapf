@@ -1,7 +1,39 @@
 ---
+import { getCollection } from "astro:content"
+
+let allArticles = await getCollection("traversy")
+let tags = allArticles.flatMap((article) => article.data.tags)
+let uniqueTags = [...new Set(tags)]
 ---
 
-<div>
-    <p>---</p>
-    <p>footer</p>
-</div>
+<footer class="text-xs bg-gray-900 text-slate-300 p-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div>
+            <h3 class="text-lg font-semibold pb-2">About</h3>
+            <p class="text-justify">
+                TechPeople is a blog for tech enthusiasts. We publish articles,
+                stories and tutorials about the latest technology trends and
+                advancements.
+            </p>
+        </div>
+        <div>
+            <h3 class="text-lg font-semibold pb-2">Categories</h3>
+            <ul>
+            {
+                uniqueTags.map((tag) => (
+                    <li>
+                        <a>#{tag.toLowerCase()}</a>
+                    </li>
+                ))
+            }
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-lg font-semibold pb-2">Contact</h3>
+            <ul>
+                <li>Email</li>
+                <li>Facebook</li>
+            </ul>
+        </div>
+    </div>
+</footer>

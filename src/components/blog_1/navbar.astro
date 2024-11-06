@@ -3,17 +3,45 @@ import { Image } from "astro:assets"
 import logo from "@/assets/traversy/logo.png"
 ---
 
-<nav>
-    <div>
-        <a>
-            <Image src={logo} alt="tech blog logo" height={55} width={55} />
+<nav class="bg-gray-900 text-slate-300">
+    <div class="flex flex-wrap justify-between items-center p-2 mx-auto">
+        <a class="flex items-center p-2 gap-2">
+            <Image src={logo} alt="tech blog logo" height={40} width={40} />
             <span>
                 <span>Tech</span>
                 Blog
             </span>
         </a>
+        <!--  -->
+        <button
+            data-collapse-toggle="blog1-navbar"
+            class="md:hidden inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none"
+            aria-controls="blog1-navbar"
+            aria-expanded="false"
+        >
+            <span class="sr-only">Open main menu</span>
+            <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+            >
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+        </button>
+        <div id="blog1-navbar" class="hidden w-full md:block md:w-auto">
+            <ul class="flex flex-col md:flex-row gap-4 px-4">
+                <li>
+                    <a href="/blog-1">Home</a>
+                </li>
+                <li>
+                    <a href="/blog-1/articles">Articles</a>    
+                </li>
+                <li>
+                    <a href="/blog-1/about">About</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <p>
-        ---
-    </p>
 </nav>

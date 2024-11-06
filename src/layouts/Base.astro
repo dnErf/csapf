@@ -1,6 +1,20 @@
 ---
 import "../styles.css"
+
+interface Props {
+	metaSiteDescription?: string;
+	metaPageTitle?: string;
+}
+
+let { metaSiteDescription, metaPageTitle = "CSAPF" } = Astro.props
 ---
+<script>
+import { initFlowbite } from "flowbite"
+		
+window.onload = function() {
+	initFlowbite()
+}
+</script>
 
 <html lang="en">
 	<head>
@@ -8,8 +22,9 @@ import "../styles.css"
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={metaSiteDescription} />
         <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
-		<title>CSAPF</title>
+		<title>{metaPageTitle}</title>
 	</head>
 	<body>
 		<slot />
