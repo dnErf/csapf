@@ -2,7 +2,7 @@
 title: 'Soaring to New Heights: The World of Drones'
 published: 2024-01-16
 author: 'Sarah Davis'
-image: 'image5.png'
+image: 'a6746b09-d49a-4f20-85b2-53af3aba441c'
 tags: ['drones', 'tech', 'gadgets']
 slug: soaring-to-new-heights-the-world-of-drones
 ---

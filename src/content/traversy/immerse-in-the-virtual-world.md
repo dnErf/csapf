@@ -2,7 +2,7 @@
 title: 'Immerse in the Virtual World: VR Development'
 published: 2024-01-18
 author: 'Michael Johnson'
-image: 'image3.png'
+image: '718ad15d-894f-4ca0-8740-5536aed36d66'
 tags: ['vr', 'gadgets', 'tech']
 slug: immerse-in-the-virtual-world-vr-development
 ---

@@ -1,12 +1,19 @@
 ---
-import ArticleRecent from "./article_recent.astro"
+import type { CollectionEntry } from "astro:content"
+import ArticleRecent from "./article_recent.jsx";
+
+interface Props {
+    recentArticle?: CollectionEntry<"traversy">;
+}
+
+let { recentArticle } = Astro.props
 ---
 
-<div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
-        <h1>
+        <h1 class="font-semibold my-4 p-4 text-2xl lg:text-4xl">
             Articles, Stories, Tutorials
         </h1>
     </div>
-    <ArticleRecent />
+    <ArticleRecent article={recentArticle} client:only="preact" />
 </div>

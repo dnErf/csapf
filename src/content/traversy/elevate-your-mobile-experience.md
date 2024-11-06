@@ -2,7 +2,7 @@
 title: 'Elevate Your Mobile Experience with Samsung'
 published: 2024-01-17
 author: 'Jane Smith'
-image: 'image4.png'
+image: '56eafe1c-f413-4f9d-83bc-2b1eb16a8ee2'
 tags: ['samsung', 'smartphones', 'gadgets']
 slug: elevate-your-mobile-experience-with-samsung
 ---

@@ -1,13 +1,19 @@
 ---
+import { getCollection } from "astro:content"
 import Blog_1 from "@/layouts/Blog_1.astro"
 import Heading from "@/components/blog_1/heading.astro"
 import ArticleCard from "@/components/blog_1/article_card.astro"
 import ArticleSearch from "@/components/blog_1/article_search.astro"
+
+let allArticles = (await getCollection("traversy"))
+    .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
+let recentArticle = allArticles[0]
+let otherArticle = allArticles.slice(1)
 ---
 
 <Blog_1>
     <div>
-        <Heading />
+        <Heading recentArticle={recentArticle} />
     </div>
     <div>
         <ArticleSearch />

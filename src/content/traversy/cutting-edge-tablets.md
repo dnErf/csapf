@@ -2,7 +2,7 @@
 title: 'Unleash Creativity With These Cutting-Edge Tablets'
 published: 2024-01-14
 author: 'Ralph Johnson'
-image: 'image7.png'
+image: '4f451241-1773-44e8-86b9-c5ae23e07722'
 tags: ['tablets', 'gadgets']
 slug: unleash-creativity-with-these-cutting-edge-tablets
 ---

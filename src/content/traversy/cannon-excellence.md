@@ -2,7 +2,7 @@
 title: "Capturing Life's Moments with Canon Excellence"
 published: 2024-01-15
 author: 'David Mitchell'
-image: 'image6.png'
+image: 'dba8d3f1-4bed-48ef-b107-fc9201cb07db'
 tags: ['photography', 'canon', 'tech']
 slug: capturing-lifes-moments-with-canon-excellence
 ---

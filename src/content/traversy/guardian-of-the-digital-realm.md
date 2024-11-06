@@ -2,7 +2,7 @@
 title: 'Guardian of the Digital Realm: Web Security'
 published: 2024-01-19
 author: 'John Doe'
-image: 'image2.png'
+image: '456850b6-f5a1-4c84-8961-e4cf5b0cd10b'
 tags: ['code', 'security', 'tech']
 slug: guardian-of-the-digital-realm-web-security
 ---

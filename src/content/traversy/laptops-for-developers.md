@@ -2,7 +2,7 @@
 title: 'The best laptops for developers in 2024'
 published: 2024-01-20
 author: 'John Doe'
-image: 'image1.png'
+image: 'dcafefa1-fe78-4d73-aa04-89f3b8bf3306'
 tags: ['tech', 'hardware']
 slug: laptops-for-developers-in-2024
 ---
