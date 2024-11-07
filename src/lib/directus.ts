@@ -31,6 +31,6 @@ type Schema = {
     csapf_posts: Post[];
 }
 
-const directus = createDirectus<Schema>(import.meta.env.DIRECTUS_URL).with(rest());
+const directus = createDirectus<Schema>(import.meta.env.PUBLIC_DIRECTUS).with(rest());
 
 export default directus;

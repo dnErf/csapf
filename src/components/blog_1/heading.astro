@@ -1,11 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content"
-import ArticleRecent from "./article_recent.jsx";
+import { formatDate } from "@/lib/utils"
 
 interface Props {
     recentArticle?: CollectionEntry<"traversy">;
 }
 
+let directusUrl = import.meta.env.PUBLIC_DIRECTUS
 let { recentArticle } = Astro.props
 ---
 
@@ -15,5 +16,24 @@ let { recentArticle } = Astro.props
             Articles, Stories, Tutorials
         </h1>
     </div>
-    <ArticleRecent article={recentArticle} client:only="preact" />
+    <div>
+        <a href={`/articles/${recentArticle.slug}`}>
+            <img src={`${directusUrl}/assets/${recentArticle.data.image}`} alt="recent article image" class="w-full h-auto rounded-2xl" />
+            <div>
+                <h2>
+                    {recentArticle.data.title}
+                </h2>
+                <p>
+                    {formatDate(recentArticle.data.published)}
+                </p>
+                <div>
+                {
+                    recentArticle.data.tags.map((tag) => (
+                        <span>{tag}</span>
+                    ))
+                }
+                </div>
+            </div>
+        </a>
+    </div>
 </div>

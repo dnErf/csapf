@@ -9,6 +9,10 @@ let allArticles = (await getCollection("traversy"))
     .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
 let recentArticle = allArticles[0]
 let otherArticle = allArticles.slice(1)
+
+// Astro.response.headers.set('Access-Control-Allow-Origin', '*')
+// Astro.response.headers.set('Access-Control-Allow-Headers', 'Content-Type')
+// Astro.response.headers.set('Access-Control-Allow-Methods', 'GET, OPTIONS')
 ---
 
 <Blog_1>
