@@ -1,12 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content"
+import { DIRECTUS_URL } from "@/lib/constants"
 import { formatDate } from "@/lib/utils"
 
 interface Props {
     recentArticle?: CollectionEntry<"traversy">;
 }
 
-let directusUrl = import.meta.env.PUBLIC_DIRECTUS
 let { recentArticle } = Astro.props
 ---
 
@@ -18,7 +18,7 @@ let { recentArticle } = Astro.props
     </div>
     <div>
         <a href={`/articles/${recentArticle.slug}`}>
-            <img src={`${directusUrl}/assets/${recentArticle.data.image}`} alt="recent article image" class="w-full h-auto rounded-2xl" />
+            <img src={`${DIRECTUS_URL}/assets/${recentArticle.data.image}`} alt="recent article image" class="w-full h-auto rounded-2xl" />
             <div>
                 <h2>
                     {recentArticle.data.title}
