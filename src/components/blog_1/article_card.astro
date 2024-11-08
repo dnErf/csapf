@@ -1,6 +1,47 @@
 ---
+import type { CollectionEntry } from "astro:content"
+import { DIRECTUS_URL } from "@/lib/constants"
+import { formatDate } from "@/lib/utils"
+
+interface Props {
+    article?: CollectionEntry<"traversy">;
+}
+
+let { article } = Astro.props
 ---
 
-<div>
-    card
+<div class="py-1 bg-white shadow-md">
+    <a href={`/articles/${article.slug}`}>
+        <img 
+            class="h-48 object-cover hover:opacity-60 transition duration-300 ease-in-out" 
+            src={`${DIRECTUS_URL}/assets/${article.data.image}`} 
+            alt="article image"
+        />
+    </a>
+    <div class="p-1">
+        <h3 class="font-semibold">
+            <a href={`/articles/${article.slug}`}>
+                {article.data.title}
+            </a>
+        </h3>
+        <p class="text-xs">
+            {formatDate(article.data.published)}
+        </p>
+        <div class="flex flex-wrap gap-2 py-2">
+        {
+            article.data.tags.map((t, i) => (
+                <span
+                    class:list={["px-2 text-white rounded-full text-xs hover:opacity-90", 
+                        {
+                            "bg-indigo-500": i % 2 === 0,
+                            "bg-pink-500": i % 2 !== 0
+                        }
+                    ]}
+                >
+                    <small>{t.toLowerCase()}</small>
+                </span>
+            ))
+        }
+        </div>
+    </div>
 </div>

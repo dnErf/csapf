@@ -18,4 +18,4 @@ id = "5f4178a59b914df08be4e2de1450f941"
 preview_id = "5f4178a59b914df08be4e2de1450f941"
 
 [vars]
-PUBLIC_DIRECTUS=https://directus.vdbx.duckdns.org
+PUBLIC_DIRECTUS="https://directus.vdbx.duckdns.org"

@@ -16,20 +16,22 @@ let { recentArticle } = Astro.props
             Articles, Stories, Tutorials
         </h1>
     </div>
-    <div>
+    <div class="relative inline-block mt-4 mx-2 text-xs">
         <a href={`/articles/${recentArticle.slug}`}>
             <img src={`${DIRECTUS_URL}/assets/${recentArticle.data.image}`} alt="recent article image" class="w-full h-auto rounded-2xl" />
-            <div>
-                <h2>
+            <div class="absolute inset-0 flex flex-col justify-center text-white text-center bg-black rounded-lg opacity-80 hover:opacity-40 transition duration-300 ease-in-out">
+                <h2 class="text-xl">
                     {recentArticle.data.title}
                 </h2>
-                <p>
+                <p class="">
                     {formatDate(recentArticle.data.published)}
                 </p>
-                <div>
+                <div class="flex p-4">
                 {
                     recentArticle.data.tags.map((tag) => (
-                        <span>{tag}</span>
+                        <span class="text-white border p-1 mx-1 rounded-lg">
+                            <small>{tag}</small>    
+                        </span>
                     ))
                 }
                 </div>
