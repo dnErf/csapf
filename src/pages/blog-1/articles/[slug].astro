@@ -1,0 +1,23 @@
+---
+import { getEntry } from "astro:content"
+import Blog_1 from "@/layouts/Blog_1.astro"
+
+if (Astro.params.slug === undefined) {
+    return Astro.redirect("/404")
+}
+
+let { slug } = Astro.params
+let entry = await getEntry("traversy", slug)
+let { Content } = await entry.render()
+---
+
+<Blog_1>
+    <article>
+        <h3 class="font-semibold mb-4">
+            {entry.data.title}
+        </h3>
+        <small>
+            <Content />
+        </small>
+    </article>
+</Blog_1>

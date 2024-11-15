@@ -1,14 +1,20 @@
 ---
 import { getCollection } from "astro:content"
+import { TRAVERSY_ARTICLE_PER_PAGE } from "@/lib/constants.ts"
 import Blog_1 from "@/layouts/Blog_1.astro"
 import Heading from "@/components/blog_1/heading.astro"
 import ArticleCard from "@/components/blog_1/article_card.astro"
 import ArticleSearch from "@/components/blog_1/article_search.astro"
+import ArticlePagination from "@/components/blog_1/article_pagination.astro"
 
 let allArticles = (await getCollection("traversy"))
     .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf())
 let recentArticle = allArticles[0]
 let otherArticle = allArticles.slice(1)
+
+let currentPage = +Astro.url.searchParams.get("page")! || 1
+let totalPages = Math.ceil(otherArticle.length / TRAVERSY_ARTICLE_PER_PAGE)
+let articlesForPage = otherArticle.slice((currentPage - 1) * TRAVERSY_ARTICLE_PER_PAGE, currentPage * TRAVERSY_ARTICLE_PER_PAGE)
 
 // Astro.response.headers.set('Access-Control-Allow-Origin', '*')
 // Astro.response.headers.set('Access-Control-Allow-Headers', 'Content-Type')
@@ -23,11 +29,18 @@ let otherArticle = allArticles.slice(1)
         <ArticleSearch />
     </div>
     <!-- slug image published tags -->
-    <div class="grid gap-4 grid-cols-1 md:grid-cols-3">
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
     {
-        otherArticle.map((article) => (
+        articlesForPage.map((article) => (
             <ArticleCard article={article} />
         ))
     }
+    </div>
+    <div class="py-8">
+        <ArticlePagination 
+            currentPage={currentPage}
+            disableNext={currentPage === totalPages}
+            disablePrevious={currentPage === 1}
+        />
     </div>
 </Blog_1>

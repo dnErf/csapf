@@ -1,6 +1,29 @@
 ---
+interface Props {
+    currentPage?: number;
+    totalPages?: number;
+    disablePrevious?: boolean;
+    disableNext?: boolean;
+}
+
+let { currentPage, disableNext, disablePrevious } = Astro.props
 ---
 
 <div>
-    pagination
+    <a 
+        href={`/blog-1?page=${currentPage - 1}`}
+        class:list={["inline-block bg-gray-100 px-3 py-2 text-gray-400 rounded-lg", {
+            "pointer-events-none": disablePrevious
+        }]}
+    >
+        Previous
+    </a>
+    <a 
+        href={`/blog-1?page=${currentPage + 1}`}
+        class:list={["inline-block bg-gray-100 px-3 py-2 text-gray-400 rounded-lg", {
+            "pointer-events-none": disableNext
+        }]}
+    >
+        Next
+    </a>
 </div>

@@ -11,7 +11,7 @@ let { article } = Astro.props
 ---
 
 <div class="py-1 bg-white shadow-md">
-    <a href={`/articles/${article.slug}`}>
+    <a href={`blog-1/articles/${article.slug}`}>
         <img 
             class="h-48 object-cover hover:opacity-60 transition duration-300 ease-in-out" 
             src={`${DIRECTUS_URL}/assets/${article.data.image}`} 
@@ -20,7 +20,7 @@ let { article } = Astro.props
     </a>
     <div class="p-1">
         <h3 class="font-semibold">
-            <a href={`/articles/${article.slug}`}>
+            <a href={`blog-1/articles/${article.slug}`}>
                 {article.data.title}
             </a>
         </h3>
