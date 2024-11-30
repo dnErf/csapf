@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from "astro:content"
+import { getCollection } from "astro:content"
+import Blog_1 from "@/layouts/Blog_1.astro"
+import ArticleCard from "@/components/blog_1/article_card.astro"
+
+let query: string | null = Astro.url.searchParams.get("query")
+
+if (query === null) {
+    Astro.redirect("/")
+}
+
+let articles: CollectionEntry<"traversy">[] = (await getCollection("traversy"))
+    .filter((a) => {
+        let titleMatched: boolean = a.data.title
+            .toLowerCase()
+            .includes(query.toLowerCase())
+            
+        let slugMatched: boolean = a.slug
+            .toLowerCase()
+            .includes(query.toLowerCase())
+
+        return titleMatched || slugMatched
+    })
+---
+
+<Blog_1>
+    <h3 class="font-semibold text-2xl">
+        Search Results
+    </h3>
+    <div class="p-4">
+    {
+        (!articles.length)
+        ? (
+            <div>
+                No Results Found
+            </div>
+        ) 
+        : articles.map((a) => (
+            <article class="w-fit">
+                <ArticleCard article={a} />
+            </article>
+        ))
+    }
+    </div>
+</Blog_1>
